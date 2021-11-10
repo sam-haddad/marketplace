@@ -1,0 +1,608 @@
+{
+  "skin": [{
+    "id": "redness",
+    "name": "Skin Redness",
+    "category": "skin",
+    "category_id": "skin",
+    "authors": [
+      {
+        "name": "Dmitry Znamenskiy",
+        "email": "dmitry.znamenskiy@philips.com"
+      },
+      {
+        "name": "Mounir Zeitouny",
+        "email": "mounir.zeitouny@philips.com"
+      }
+    ],
+    "description": "Transforms an image to its redness form using local contrast enhancement method.  The input can be a PNG or a JPEG image, the output however, is always a PNG image. The redness algorithm is generic hence no specific device is targeted.",
+    "src": "redness.png",
+    "img": "redness_example.png",
+    "tags": [
+      "skin",
+      "image",
+      "local contrast"
+    ],
+    "model": "The redness algorithm is trained over one thousand male skin images.",
+    "performance": "(When service is idle)<br>CPU Usage: <b>0.03%</b><br>Memory Usage: <b>53.74MiB</b><br><br>Input Size - Response Time<br>8KB - 200ms<br>380KB - 1.8sec<br>2MB - 6.6sec",
+    "application": {
+      "language": "Python 3.5",
+      "input": "Bytes of an image in JPEG or PNG format.",
+      "output": "Bytes of an image in PNG format.",
+      "source": "bitbucket/barista-marketplace-services/skin/redness"
+    },
+    "service": {
+      "endpoint": "redness",
+      "runtime": "Python 3.5.5",
+      "url": "/api/v0/services/redness"
+    },
+    "output": "Image"
+  },
+  {
+    "id": "rednesscontours",
+    "name": "Redness Contours",
+    "category": "skin",
+    "category_id": "skin",
+    "authors": [
+      {
+        "name": "Mounir Zeitouny",
+        "email": "mounir.zeitouny@philips.com"
+      }
+    ],
+    "description": "The redness contours algorithm calculates and displays the redness score of the shaving areas on a male face. The <b>/rednesscontours/img</b> endpoint returns a PNG image and <b>/rednesscontours/values</b> endpoint return scores as a JSON response.",
+    "src": "rednesscontours.png",
+    "img": "rednesscontours_example.png",
+    "tags": [
+      "skin",
+      "image",
+      "local contrast",
+      "shaving"
+    ],
+    "model": "The redness contours algorithm uses the redness algorithm.",
+    "performance": "(When service is idle)<br>CPU Usage: <b>0.04%</b><br>Memory Usage: <b>50MiB</b><br><br>Input Size - Response Time<br>300KB - 1.2sec",
+    "application": {
+      "language": "Python 3.5",
+      "input": "Bytes of an image in JPEG or PNG format.",
+      "output": "Bytes of an image in PNG format.",
+      "source": "bitbucket/barista-marketplace-services/skin/redness"
+    },
+    "service": {
+      "endpoint": "rednesscontours/img",
+      "runtime": "Python 3.5.5",
+      "url": "/api/v0/services/rednesscontours/img"
+    },
+    "output": "Image"
+  },
+  {
+    "id": "segmentation",
+    "name": "Face Skin Segmentation",
+    "category": "skin",
+    "category_id": "skin",
+    "authors": [
+      {
+        "name": "Nadya Timofeeva",
+        "email": "nadya.timofeeva@philips.com"
+      },
+      {
+        "name": "Mounir Zeitouny",
+        "email": "mounir.zeitouny@philips.com"
+      }
+    ],
+    "description": "The face skin segmentation algorithm marks the forehead area of a given face image. The input can be a PNG or a JPEG image, the output however, is always a PNG image. Service can be accessed as <b>/skinsegmentation/forehead</b> to get an forehead image without semi-transparent mask overlay. The algorithm works on aligned images taken by a Visia device.",
+    "src": "segmentation.png",
+    "img": "segmentation_example.png",
+    "tags": [
+      "skin",
+      "face",
+      "image",
+      "deep learning"
+    ],
+    "model": "The algorithm is based on deep learning (convolutional neural networks) and trained on 300K images (patches) taken by Visia.",
+    "performance": "(When service is idle)<br>CPU Usage: <b>0.06%</b><br>Memory Usage: <b>1.553GiB</b><br><br>Input Size - Response Time<br>4MB - 3.5sec",
+    "application": {
+      "language": "Python 3.5",
+      "input": "Bytes of an image in JPEG or PNG format.",
+      "output": "Bytes of an image in PNG format.",
+      "source": "bitbucket/barista-marketplace-services/skin/segmentation"
+    },
+    "service": {
+      "endpoint": "skinsegmentation",
+      "runtime": "Python 3.5.5",
+      "url": "/api/v0/services/skinsegmentation"
+    },
+    "output": "Image"
+  },
+  {
+      "id": "foreheadskinsegmentation",
+      "name": "Forehead Skin Segmentation",
+      "category": "skin",
+      "category_id": "skin",
+      "authors": [
+        {
+          "name": "",
+          "email": ""
+        }
+      ],
+      "description": "Forehead Face Skin Detector Service.",
+      "src": "forehead_segmentation.png",
+      "img": "",
+      "tags": [
+        "skin",
+        "face",
+        "deep learning"
+      ],
+      "model": ".",
+      "performance": "(When service is idle)<br>CPU Usage: <b>0.09%</b><br>Memory Usage: <b>60MiB</b><br><br>Input Size - Response Time<br>500KB - 1sec",
+      "application": {
+        "language": "Python 3.5",
+        "input": "Bytes of an image in JPEG or PNG format.",
+        "output": "Bytes of an image in PNG format.",
+        "source": "bitbucket/barista-marketplace-services/skin/skinsegmentation/forehead"
+      },
+      "service": {
+        "endpoint": "skinsegmentation/forehead",
+        "runtime": "Python 3.5.5",
+        "url": "/api/v0/services/skinsegmentation/forehead"
+      },
+      "output": "Image"
+  },
+  {
+      "id": "roughness",
+      "name": "Face Skin Roughness",
+      "category": "skin",
+      "category_id": "skin",
+      "authors": [
+        {
+          "name": "Nadya Timofeeva",
+          "email": "nadya.timofeeva@philips.com"
+        },
+        {
+          "name": "Mounir Zeitouny",
+          "email": "mounir.zeitouny@philips.com"
+        }
+      ],
+      "description": "The face skin roughness algorithm marks the forehead area of a given face image and then calculates the roughness score (1 to 100) on that area. The input can be a PNG or a JPEG image, the output is JSON with scores. ",
+      "tags": [
+        "skin",
+        "face",
+        "image",
+        "deep learning"
+      ],
+      "example": {
+        "predicted_age": "younger than 50",
+        "data": {
+          "percentage": 10,
+          "name": "Roughness Score"
+        },
+        "min": 0,
+        "max": 100
+      },
+      "model": "The algorithm is based on deep learning (convolutional neural networks) and trained on 900K images.",
+      "performance": "(When service is idle)<br>CPU Usage: <b>0.04%</b><br>Memory Usage: <b>146MiB</b><br><br>Input Size - Response Time<br>320KB - 3sec",
+      "application": {
+        "language": "Python 3.5",
+        "input": "Bytes of an image in JPEG or PNG format.",
+        "output": "Bytes of an image in PNG format.",
+        "source": "bitbucket/barista-marketplace-services/skin/roughness"
+      },
+      "service": {
+        "endpoint": "roughness",
+        "runtime": "Python 3.5.5",
+        "url": "/api/v0/services/roughness"
+      },
+      "output": "Json"
+  },
+  {
+      "id": "pimpledetection",
+      "name": "Pimple Detection Service",
+      "category": "skin",
+      "category_id": "skin",
+      "authors": [
+        {
+          "name": "Linda Beijens",
+          "email": "linda.beijens@philips.com"
+        },
+        {
+          "name": "Mounir Zeitouny",
+          "email": "mounir.zeitouny@philips.com"
+        }
+      ],
+      "description": "The pimple detetcion algorithm marks the pimples on a face image. The input can be a PNG or a JPEG image, the output however, is always a PNG image. Service can be accessed as <b>/pimpledetection?mask=true</b> to get only the mask image. Service can also be accessed as <b>/pimpledetection/all</b> to receive the overlay and the mask image in a single request as multi-part mime type.",
+      "src": "pimple.png",
+      "img": "pimple_example.png",
+      "tags": [
+        "skin",
+        "face",
+        "pimple",
+        "deep learning"
+      ],
+      "model": "The algorithm is developed using Barista Active Learning Service.",
+      "performance": "(When service is idle)<br>CPU Usage: <b>0.09%</b><br>Memory Usage: <b>60MiB</b><br><br>Input Size - Response Time<br>3MB - 5.3sec",
+      "application": {
+        "language": "Python 3.5",
+        "input": "Bytes of an image in JPEG or PNG format.",
+        "output": "Bytes of an image in PNG format.",
+        "source": "bitbucket/barista-marketplace-services/skin/pimpledetection"
+      },
+      "service": {
+        "endpoint": "pimpledetection",
+        "runtime": "Python 3.5.5",
+        "url": "/api/v0/services/pimpledetection"
+      },
+      "output": "Image"
+  },
+  {
+      "id": "poredetection",
+      "name": "Pores Detection Service",
+      "category": "skin",
+      "category_id": "skin",
+      "authors": [
+        {
+          "name": "Linda Beijens",
+          "email": "linda.beijens@philips.com"
+        },
+        {
+          "name": "Mounir Zeitouny",
+          "email": "mounir.zeitouny@philips.com"
+        }
+      ],
+      "description": "The pores detetcion algorithm marks the pores on a face image. The input can be a PNG or a JPEG image, the output however, is always a PNG image. Service can be accessed as <b>/poredetection?mask=true</b> to get only the mask image. Service can also be accessed as <b>/poredetection/all</b> to receive the overlay and the mask image in a single request as multi-part mime type.",
+      "src": "pore.png",
+      "img": "pore_example.png",
+      "tags": [
+        "skin",
+        "face",
+        "pore",
+        "deep learning"
+      ],
+      "model": "The algorithm is developed using Barista Active Learning Service.",
+      "performance": "(When service is idle)<br>CPU Usage: <b>0.09%</b><br>Memory Usage: <b>60MiB</b><br><br>Input Size - Response Time<br>500KB - 1sec",
+      "application": {
+        "language": "Python 3.5",
+        "input": "Bytes of an image in JPEG or PNG format.",
+        "output": "Bytes of an image in PNG format.",
+        "source": "bitbucket/barista-marketplace-services/skin/poredetection"
+      },
+      "service": {
+        "endpoint": "poredetection",
+        "runtime": "Python 3.5.5",
+        "url": "/api/v0/services/poredetection"
+      },
+      "output": "Image"
+  },
+  {
+      "id": "porecloseup",
+      "name": "Pore close up Detection",
+      "category": "skin",
+      "category_id": "skin",
+      "authors": [
+        {
+          "name": "",
+          "email": ""
+        }
+      ],
+      "description": "Pore detection targeting images from oculus devices.",
+      "src": "",
+      "img": "",
+      "tags": [
+        "skin",
+        "face",
+        "pore",
+        "deep learning"
+      ],
+      "model": ".",
+      "performance": "(When service is idle)<br>CPU Usage: <b>0.09%</b><br>Memory Usage: <b>60MiB</b><br><br>Input Size - Response Time<br>500KB - 1sec",
+      "application": {
+        "language": "Python 3.5",
+        "input": "Bytes of an image in JPEG or PNG format.",
+        "output": "Bytes of an image in PNG format.",
+        "source": "bitbucket/barista-marketplace-services/skin/porecloseup"
+      },
+      "service": {
+        "endpoint": "porecloseup",
+        "runtime": "Python 3.5.5",
+        "url": "/api/v0/services/porecloseup"
+      },
+      "output": "Image"
+  },
+  {
+    "id": "oiliness",
+    "name": "Skin Oiliness",
+    "category": "skin",
+    "category_id": "skin",
+    "authors": [
+      {
+        "name": "Dmitry Znamenskiy",
+        "email": "dmitry.znamenskiy@philips.com"
+      },
+      {
+        "name": "Mounir Zeitouny",
+        "email": "mounir.zeitouny@philips.com"
+      }
+    ],
+    "description": "Measures the oiliness level of skin. The algorithm performs SVM classification.",
+    "example": {
+      "data": {
+        "percentage": 60,
+        "name": "Oiliness Score"
+      },
+      "min": 0,
+      "max": 100
+    },
+    "tags": [
+      "skin",
+      "image",
+      "oiliness",
+      "svm"
+    ],
+    "performance": "(When service is idle)<br>CPU Usage: <b>0.05%</b><br>Memory Usage: <b>72.4MiB</b><br><br>Input Size - Response Time<br>15KB - 350ms<br>300KB - 370ms",
+    "application": {
+      "language": "Python 3.5",
+      "input": "Bytes of an image in JPEG or PNG format.",
+      "output": "Oiliness Scores as a JSON Object.",
+      "source": "bitbucket/barista-marketplace-services/skin/oiliness"
+    },
+    "service": {
+      "endpoint": "oiliness",
+      "runtime": "Python 3.5.5",
+      "url": "/api/v0/services/oiliness"
+    },
+    "output": "Json"
+  },
+  {
+    "id": "oiliness-dl",
+    "name": "Skin Oiliness",
+    "category": "skin",
+    "category_id": "skin",
+    "authors": [
+      {
+        "name": "Ulf Grossekathofer",
+        "email": "ulf.grossekathofer@philips.com"
+      },
+      {
+        "name": "Marija Despenic",
+        "email": "marija.despenic@philips.com"
+      },
+      {
+        "name": "Adrienne Heinrich",
+        "email": "adrienne.heinrich@philips.com"
+      }
+    ],
+    "description": "This algorithm classifies skin images in classes 'oily' or 'cleansed'.",
+    "model": "The model is a convolutional neural network with 16 layers and 181922 model parameters. For training, a data set was split into 5 folds, 4 of which were used for training while the remaining fold was used for independent validation. <br><br> The run_id of this model is run_20180502-012034_geras_euny0q40",
+    "performance": "On the unseen validation data this model reaches an AUC-ROC score of 0.9857, a Cohen’s Kappa score of 0.9, and an accuracy score of 0.95. Running times on GPU supported hardware are approximately 20 milliseconds, on CPU only hardware, running times for a single skin image are around 0.2 seconds.",
+    "example": {
+      "data": {
+        "percentage": 5,
+        "name": "Cleansed"
+      },
+      "min": 0,
+      "max": 100
+    },
+    "tags": [
+        "convolutional neural network",
+        "skin oiliness",
+        "deep learning"
+    ],
+    "application": {
+      "language": "Python 3.5",
+      "input": "Bytes of an image in JPEG or PNG format.",
+      "output": "Oiliness Scores as a JSON Object.",
+      "source": "bitbucket/barista-marketplace-services/skin/oiliness-dl"
+    },
+    "service": {
+      "endpoint": "oiliness-dl",
+      "runtime": "Python 3.5.5",
+      "url": "/api/v0/services/oiliness-dl"
+    },
+    "output": "Json"
+  }
+],
+"body": [
+  {
+      "id": "face2d3d",
+      "name": "Face Alignment",
+      "category": "Human Body Modelling",
+      "category_id": "body",
+      "authors": [
+        {
+          "name": "Dmitry Znamenskiy",
+          "email": "dmitry.znamenskiy@philips.com"
+        }
+      ],
+      "description": "Produces a canonical alignment of a facial image based on translation, scale, and rotation.",
+      "src": "face2d3d.png",
+      "img": "face2d3d_example.png",
+      "tags": [
+        "body",
+        "face",
+        "image",
+        "2d-3d conversion"
+      ],
+      "model": "",
+      "performance": "",
+      "application": {
+        "language": "Matlab and Java 8",
+        "input": "Bytes of an image in JPEG or PNG format.",
+        "output": "Bytes of an image in PNG format.",
+        "source": "bitbucket/barista-matlab-services/barista-service-face-align"
+      },
+      "service": {
+        "endpoint": "face2d3d/alignimage",
+        "runtime": "Matlab R2016b",
+        "url": "/api/v0/services/face2d3d/alignimage"
+      },
+      "output": "Image"
+  },
+  {
+    "id": "facegeo",
+    "name": "Face Geometry",
+    "category": "Human Body Modelling",
+    "category_id": "body",
+    "authors": [
+      {
+        "name": "Calina Ciuhu",
+        "email": "calina.ciuhu@philips.com"
+      }
+    ],
+    "description": "Performs measurements on landmarks received from the face alignment service (eye width, face height, etc).",
+    "src": "",
+    "img": "",
+    "tags": [
+      "body",
+      "face",
+      "image",
+      "2d-3d conversion"
+    ],
+    "model": "",
+    "performance": "",
+    "application": {
+      "language": "Matlab and Java 8",
+      "input": "Bytes of an image in JPEG or PNG format.",
+      "output": "Eye width, face height as JSON Object.",
+      "source": "bitbucket/barista-matlab-services/barista-service-face-align"
+    },
+    "service": {
+      "endpoint": "facegeo",
+      "runtime": "Matlab R2016b",
+      "url": "/api/v0/services/facegeo"
+    },
+    "output": "Image"
+}
+],
+"business": [
+  {
+      "id": "skintwinengine",
+      "name": "Skin Twin Recommendation",
+      "category": "Business",
+      "category_id": "business",
+      "authors": [
+        {
+          "name": "Klaus Schaefers",
+          "email": "klaus.scaefers@philips.com"
+        }
+      ],
+      "description": "The service is available at PGN: https://barista.research.philips.com:9007. <br> Please refer to the API documentation at: bitbucket/barista-netrec/",
+      "tags": [
+        "skin",
+        "recommendation"
+      ],
+      "application": {
+        "language": "Java and Python"
+      },
+      "service": {
+        "endpoint": "netrec",
+        "url": "/netrec"
+      }
+  }
+],
+"hair": [
+  {
+    "id": "hairsegmentation",
+    "name": "Hair Segmentation",
+    "category": "hair",
+    "category_id": "hair",
+    "authors": [
+      {
+        "name": "Alessio Gallucci",
+        "email": "alessio.gallucci@philips.com"
+      },
+      {
+        "name": "Dmitry Znamenskiy",
+        "email": "dmitry.znamenskiy@philips.com"
+      }
+    ],
+    "description": "The algorithm produces a segmentation of the hairs (in color green) present in the input image. If the service is called with the query parameter <i>map=true</i>, then the service returns only the segmented hair overlay image.",
+    "src": "hair_segmentation2.png",
+    "img": "hair_segmentation_example.png",
+    "tags": [
+      "hair",
+      "segmentation",
+      "image",
+      "deep learning"
+    ],
+    "model": "The algorithm is based on deep learning (CNN UNet-128) and trained on 300 images taken by a very high resolution (2848, 4288, 3) Nikon camera.",
+    "performance": "Mean absolute error: 0.0443<br>Accuracy: 0.9688<br><br>(When service is idle)<br>CPU Usage: <b>0.06%</b><br>Memory Usage: <b>112MiB</b><br><br>Input Size - Response Time<br>5MB - 16sec",
+    "application": {
+      "language": "Python 3.6.3",
+      "input": "Bytes of an image in JPEG or PNG format.",
+      "output": "Bytes of an image in PNG format.",
+      "source": "bitbucket/barista-marketplace-services/hair/segmentation"
+    },
+    "service": {
+      "endpoint": "hairsegmentation?map=true",
+      "runtime": "Python 3.5.5",
+      "url": "/api/v0/services/hairsegmentation?map=true"
+    },
+    "output": "Image"
+  },
+  {
+    "id": "missedhair",
+    "name": "Missed Hair Detection",
+    "category": "hair",
+    "category_id": "hair",
+    "authors": [
+      {
+        "name": "Mounir Zeitouny",
+        "email": "mounir.zeitouny@philips.com"
+      }
+    ],
+    "description": "The algorithm produces a segmentation of the hairs on shaving area of a face (in color green). The service utilizes the <b>hairsegmentation</b> service.",
+    "src": "missedhair.png",
+    "img": "missedhair_example.png",
+    "tags": [
+      "hair",
+      "shaving",
+      "segmentation",
+      "image",
+      "deep learning"
+    ],
+    "model": "",
+    "performance": "(When service is idle)<br>CPU Usage: <b>0.05%</b><br>Memory Usage: <b>55.6MiB</b><br><br>Input Size - Response Time<br>2MB - 8sec",
+    "application": {
+      "language": "Python 3.6.3",
+      "input": "Bytes of an image in JPEG or PNG format.",
+      "output": "Bytes of an image in PNG format.",
+      "source": "bitbucket/barista-marketplace-services/hair/missedhair"
+    },
+    "service": {
+      "endpoint": "missedhair",
+      "runtime": "Python 3.5.5",
+      "url": "/api/v0/services/missedhair"
+    },
+    "output": "Image"
+  },
+  {
+    "id": "whitehair",
+    "name": "White Hair Detection",
+    "category": "hair",
+    "category_id": "hair",
+    "authors": [
+      {
+        "name": "Nadya Timofeeva",
+        "email": "nadya.timofeeva@philips.com"
+      }
+    ],
+    "description": "Detects white hairs on a facial image.",
+    "src": "whitehair.png",
+    "img": "",
+    "tags": [
+      "hair",
+      "image",
+      "deep learning"
+    ],
+    "model": "",
+    "performance": "(When service is idle)<br>CPU Usage: <b>0.05%</b><br>Memory Usage: <b>55.6MiB</b><br><br>Input Size - Response Time<br>2MB - 8sec",
+    "application": {
+      "language": "Python 3.6.3",
+      "input": "Bytes of an image in JPEG or PNG format.",
+      "output": "Bytes of an image in PNG format.",
+      "source": "bitbucket/barista-marketplace-services/hair/whitehair"
+    },
+    "service": {
+      "endpoint": "whitehair",
+      "runtime": "Python 3.5.5",
+      "url": "/api/v0/services/whitehair"
+    },
+    "output": "Image"
+  }]
+}
